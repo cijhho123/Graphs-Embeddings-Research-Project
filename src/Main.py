@@ -20,7 +20,7 @@ def initEmptyGraph():
     return emptyGraph
 
 def getSpanner(graph):
-    graph.assignradii(config["algorithmSettings"]['alpha'])
+    graph.assignradii(config["algorithmSettings"]['alpha']) # TODO need to change it, the func moved to Spanner.py
     cover = initEmptyGraph()
     for e in graph.edges:
         readEdge(e)

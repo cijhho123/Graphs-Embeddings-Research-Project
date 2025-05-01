@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 from config import getSettings
 config = getSettings()
@@ -6,9 +7,10 @@ config = getSettings()
 settings = config["algorithmSettings"]
 alpha = settings["alpha"]
 
+# TODO: not sure what you did here, I think it is incompatable with my part, see generateRadiusValue()
 def assignRadii(graph, t):
     for v in graph.vertices:
-        p = (1/graph.n)**(1/graph.n)
+        p = (1/graph.size)**(1/graph.size)
         dist = []
         sum = 0.0
         for k in range(t-1):
@@ -20,6 +22,14 @@ def assignRadii(graph, t):
         for k, ceil in enumerate(dist):
             if rand < ceil:
                 v.radius = k
+
+def generateRadiusValue(size):
+    probability = pow((np.ln(size) / size), (1 / alpha))
+    
+    for k in range ()
+
+def generateBaseValue(size):
+    pass
                 
 
 def readEdge(graph, e):
@@ -31,7 +41,7 @@ def readEdge(graph, e):
             v= e.first
 
         if u.p in v.m:  # really not sure about this line and what selected means 
-            v.p = u.p + graph.n
+            v.p = u.p + graph.size
             v.t.append(e)
         elif u.p.b not in v.m:
             v.m.append(u.p.b)

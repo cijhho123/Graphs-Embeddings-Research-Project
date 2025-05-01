@@ -1,6 +1,9 @@
 import networkx as nx # https://www.rustworkx.org/networkx.html#
 import random
 
+import Vertex
+from Spanner import generateBaseValue, generateRadiusValue
+
 from config import getSettings
 config = getSettings()
 settings = config["graphSettings"]
@@ -19,7 +22,13 @@ class Graph:
         self.size = settings["vertexCount"]             # Number of vertices (size)
         self.edgeProb = settings["edgeProbability"]     # Probability for edge creation
         self.graphType = settings["graphType"]          # Graph type (weighted or unweighted)
-        self.seed = settings["graphSeed"]               # Seed for random number generation (optional)
+        
+        if settings["graphSeed"] is None:
+            self.seed = random.randint(0, 10**6)        # Generate random seed
+        else:
+            self.seed = settings["graphSeed"]           # Use seed from config file
+
+        self.vertices = [None for x in range(self.size)]# Vertices object
 
     def generateRandomGraph(self):
         # Generate a stochasic random graph
@@ -42,3 +51,9 @@ class Graph:
     def generateEmptyGraph(self):
         self.graph = nx.Graph()
         self.graph.add_nodes_from(range(self.n))
+
+    def initVertices(self):
+        for x in range (0, self.size):
+            base = generateBaseValue(self.size)
+            radius = generateRadiusValue(self.size)
+            self.vertices[x] = Vertex(x, base, radius, 0, base)

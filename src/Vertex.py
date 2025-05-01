@@ -1,5 +1,3 @@
-import Graph
-
 """
     Vertex: 
         ID - baked into the graph
@@ -18,3 +16,6 @@ class Vertex:
         self.level = radius
         self.label = label
         self.edgeSet = edgeSet
+
+    def combineEdgeSet():
+        pass #TODO
