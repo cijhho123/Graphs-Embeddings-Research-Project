@@ -1,0 +1,20 @@
+{   
+    "softwareSettings": {
+        "debug": true
+    },
+
+    "graphSettings": {
+        "graphType": {
+            "type": "weighted",
+            "lowerBoundWeight": "1",
+            "upperBoundWeight": "20"
+        },
+        "vertexCount": 100,
+        "edgeProbability": 0.3,
+        "graphSeed": null
+    },
+    
+    "algorithmSettings": {
+        "alpha": 5
+    }
+}
