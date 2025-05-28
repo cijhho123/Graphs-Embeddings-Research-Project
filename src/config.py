@@ -19,7 +19,7 @@ defaultConfig = {
 
     "graphSettings": {
         "graphType": weightedGraphType,     # weighted vs unweighted graph
-        "vertexCount": 100,                 # Graph size |V| = vertexCount
+        "vertexCount": 20,                 # Graph size |V| = vertexCount
         "edgeProbability": 0.3,             # The probability of each edge to exist, each edge is an i.i.d. random varible
         "graphSeed": None                   # Seed to generate the random graph, None for random seed
     },

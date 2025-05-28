@@ -1,8 +1,8 @@
-import networkx as nx # https://www.rustworkx.org/networkx.html#
+import networkx as nx # https://networkx.org/documentation/stable/tutorial.html
 import random
 
-import Vertex
-from Spanner import generateBaseValue, generateRadiusValue
+from Vertex import Vertex
+from Label import Label
 
 from config import getSettings
 config = getSettings()
@@ -28,23 +28,23 @@ class Graph:
         else:
             self.seed = settings["graphSeed"]           # Use seed from config file
 
-        self.vertices = [None for x in range(self.size)]# Vertices object
-
     def generateRandomGraph(self):
         # Generate a stochasic random graph
-        graph =  nx.erdos_renyi_graph(self.n, self.p, self.seed) 
+        graph =  nx.erdos_renyi_graph(self.size, self.edgeProb, self.seed) 
         
         # Get graph type (weighted / unweighted)
-        lower = -1, upper = -1
+        lower = upper = -1
         if (self.graphType["type"] == "weighted"):
             lower = self.graphType["lowerBoundWeight"]
             upper = self.graphType["upperBoundWeight"]
         elif (self.graphType["type"] == "unweighted"):
             lower = upper = self.graphType["weight"]
-        
+        lower = int(lower)
+        upper = int(upper)
+
         # Generate edges weight
         for u, v in graph.edges():
-            graph[u][v] = random.randint(lower, upper)
+            graph[u][v]['weight'] = random.randint(lower, upper)
 
         self.graph = graph
     
@@ -54,6 +54,8 @@ class Graph:
 
     def initVertices(self):
         for x in range (0, self.size):
-            base = generateBaseValue(self.size)
-            radius = generateRadiusValue(self.size)
-            self.vertices[x] = Vertex(x, base, radius, 0, base)
+            self.graph.nodes[x]['vertex'] = Vertex(x)
+
+    def printGraph(self):
+        for u, v in self.graph.edges():
+            print(f"{u} --- {v}")

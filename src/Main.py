@@ -1,17 +1,22 @@
-from Graph import Graph, readEdge, createGraph
+from Graph import Graph
+from Spanner import readEdge, generateRadiusValue
+import networkx as nx
+from Label import Label
 
 from config import getSettings
 config = getSettings()
 
 def main():
     graph = initRandomGraph()
-
     cover = getSpanner(graph)
+    cover.printGraph()
+    
 
 
 def initRandomGraph():
     graph =  Graph()
     graph.generateRandomGraph()
+    graph.initVertices()
     return graph
 
 def initEmptyGraph():
@@ -20,15 +25,22 @@ def initEmptyGraph():
     return emptyGraph
 
 def getSpanner(graph):
-    graph.assignradii(config["algorithmSettings"]['alpha']) # TODO need to change it, the func moved to Spanner.py
-    cover = initEmptyGraph()
+    generateRadiusValue(graph)
+    for vertexID in graph.graph.nodes:
+        vertex = graph.graph.nodes[vertexID]['vertex']
+        vertex.label = Label(graph, vertex.label, vertex)
+    
     for e in graph.edges:
         readEdge(e)
+    
+    spanner = nx.Graph()
     for v in graph.vertices:
-        cover.append(v.t)  # should be changed to add_edges when function exists
-        cover.append(v.x)  # should be changed to add_edges when function exists
+        for e in v.tree:
+            spanner.add_edge(e.first, e.second)
+        for e in v.cross:
+            spanner.add_edge(e.first, e.second)
 
-    return cover
+    return spanner
 
 
 if __name__ == "__main__":

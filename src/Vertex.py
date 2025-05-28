@@ -1,21 +1,26 @@
+from Label import Label 
 """
     Vertex: 
         ID - baked into the graph
-        base value - integer
-        level - integer
+        label - integer (p starts as id)
         radius - integer
-        label - integer
-        edge set - start with a singelton of the vertex, grows with time
+        edge set - start with a singelton of the vertex, grows with time (Sp(v))
+
+        tree edges - subset of edge set (T(v))
+        cross edges - subset of edge set (X(v))
+        table - initially empty, stores all base values of level P. (M(v))
+
 """
 
 class Vertex:
-    def __init__(self, id, base=None, radius=None, level=None, label=None, edgeSet={id}):
-        self.id = id
-        self.base = base
-        self.radius = radius
-        self.level = radius
-        self.label = label
-        self.edgeSet = edgeSet
+    def __init__(self, id):
+        self.id = id+1
+        self.radius = -1
+        self.label = id+1  # TODO empty
+        self.edgeSet = []
+        self.tree = []
+        self.cross = []
+        self.table = []
 
-    def combineEdgeSet():
-        pass #TODO
+    def combineEdgeSet(baseSet, addedSet):
+        baseSet = baseSet.union(addedSet)

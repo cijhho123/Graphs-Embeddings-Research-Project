@@ -7,10 +7,13 @@ config = getSettings()
 settings = config["algorithmSettings"]
 alpha = settings["alpha"]
 
-# TODO: not sure what you did here, I think it is incompatable with my part, see generateRadiusValue()
-def assignRadii(graph, t):
-    for v in graph.vertices:
-        p = (1/graph.size)**(1/graph.size)
+def generateRadiusValue(graph):
+    t = int((int(alpha) + 1)/2)
+
+    for vertexID in graph.graph.nodes:
+        vertex = graph.graph.nodes[vertexID]['vertex']
+
+        p = (1/graph.size)**(1/t)
         dist = []
         sum = 0.0
         for k in range(t-1):
@@ -21,16 +24,7 @@ def assignRadii(graph, t):
         rand = random.random()
         for k, ceil in enumerate(dist):
             if rand < ceil:
-                v.radius = k
-
-def generateRadiusValue(size):
-    probability = pow((np.ln(size) / size), (1 / alpha))
-    
-    for k in range ()
-
-def generateBaseValue(size):
-    pass
-                
+                vertex.radius = k
 
 def readEdge(graph, e):
         if e.first > e.second:  # need to add comparison by label and then by index
@@ -39,10 +33,9 @@ def readEdge(graph, e):
         else:
             u = e.second
             v= e.first
-
-        if u.p in v.m:  # really not sure about this line and what selected means 
-            v.p = u.p + graph.size
-            v.t.append(e)
-        elif u.p.b not in v.m:
-            v.m.append(u.p.b)
-            v.x.append(e)
+        if u.label.level < u.labe.baseVertex.radius:
+            v.label.label = u.label.label + graph.size
+            v.tree.append(e)
+        elif u.label.base not in v.table:
+            v.table.append(u.label.base) 
+            v.cross.append(e)
