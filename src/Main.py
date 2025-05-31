@@ -28,7 +28,7 @@ def getSpanner(graph):
     generateRadiusValue(graph)
     for vertexID in graph.graph.nodes:
         vertex = graph.graph.nodes[vertexID]['vertex']
-        vertex.label = Label(graph, vertex.label, vertex)
+        vertex.label = Label(graph, vertex)  # base = vertex.id, level = 0
     
     for u, v in graph.edges():
         e = Edge(graph.graph.nodes[u]['vertex'], graph.graph.nodes[v]['vertex'])

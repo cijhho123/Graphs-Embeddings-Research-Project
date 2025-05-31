@@ -14,13 +14,13 @@ from Label import Label
 
 class Vertex:
     def __init__(self, id):
-        self.id = id+1
+        self.id = id
         self.radius = -1
-        self.label = id+1  # TODO empty
+        self.label = None  # Will be initialized later
         self.edgeSet = []
         self.tree = []
         self.cross = []
-        self.table = []
+        self.table = set()
 
     def combineEdgeSet(baseSet, addedSet):
         baseSet = baseSet.union(addedSet)

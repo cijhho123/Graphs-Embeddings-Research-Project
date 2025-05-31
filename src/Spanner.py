@@ -34,12 +34,12 @@ def readEdge(graph, e):
         u = e.second
         v = e.first
 
-        if u.label.level < u.label.baseVertex.radius:
-            v.label.label = u.label.label + graph.size
-            v.tree.append(e)
-        elif u.label.base not in v.table:
-            v.table.append(u.label.base) 
-            v.cross.append(e)
+    if u.label.level < u.label.baseVertex.radius:
+        v.label = u.label.promote(graph)
+        v.tree.append(e)
+    elif u.label.base not in v.table:
+        v.table.add(u.label.base)
+        v.cross.append(e)
 
 def isGreaterLabel(u, v):
     if u.label.label > v.label.label:
