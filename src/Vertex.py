@@ -24,3 +24,6 @@ class Vertex:
 
     def combineEdgeSet(baseSet, addedSet):
         baseSet = baseSet.union(addedSet)
+
+    def __repr__(self):
+        return f"v{self.id}[L={self.label.label}]"

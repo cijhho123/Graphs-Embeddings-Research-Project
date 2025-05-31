@@ -27,15 +27,23 @@ def generateRadiusValue(graph):
                 vertex.radius = k
 
 def readEdge(graph, e):
-        if e.first > e.second:  # need to add comparison by label and then by index
-            u = e.first
-            v = e.second
-        else:
-            u = e.second
-            v= e.first
-        if u.label.level < u.labe.baseVertex.radius:
+    if isGreaterLabel(e.first, e.second):
+        u = e.first
+        v = e.second
+    else:
+        u = e.second
+        v = e.first
+
+        if u.label.level < u.label.baseVertex.radius:
             v.label.label = u.label.label + graph.size
             v.tree.append(e)
         elif u.label.base not in v.table:
             v.table.append(u.label.base) 
             v.cross.append(e)
+
+def isGreaterLabel(u, v):
+    if u.label.label > v.label.label:
+        return True
+    elif u.label.label == v.label.label:
+        return u.id > v.id
+    return False

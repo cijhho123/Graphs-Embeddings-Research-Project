@@ -1,4 +1,5 @@
-from Graph import Graph
+from Graph import Graph, printGraph
+from Edge import Edge
 from Spanner import readEdge, generateRadiusValue
 import networkx as nx
 from Label import Label
@@ -9,8 +10,7 @@ config = getSettings()
 def main():
     graph = initRandomGraph()
     cover = getSpanner(graph)
-    cover.printGraph()
-    
+    printGraph(cover)
 
 
 def initRandomGraph():
@@ -30,11 +30,12 @@ def getSpanner(graph):
         vertex = graph.graph.nodes[vertexID]['vertex']
         vertex.label = Label(graph, vertex.label, vertex)
     
-    for e in graph.edges:
-        readEdge(e)
+    for u, v in graph.edges():
+        e = Edge(graph.graph.nodes[u]['vertex'], graph.graph.nodes[v]['vertex'])
+        readEdge(graph, e)
     
     spanner = nx.Graph()
-    for v in graph.vertices:
+    for v in graph.vertices():
         for e in v.tree:
             spanner.add_edge(e.first, e.second)
         for e in v.cross:

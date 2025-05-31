@@ -17,6 +17,6 @@ class Label:
     def generateBaseValue(self, graph, v):   
         size = graph.size  # n
         if size % v.label == 0:
-            v.label.base = size
+            return size
         else:
-            v.label.base = (v.label % size)
+            return v.label % size

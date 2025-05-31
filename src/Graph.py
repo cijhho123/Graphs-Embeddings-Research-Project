@@ -30,7 +30,7 @@ class Graph:
 
     def generateRandomGraph(self):
         # Generate a stochasic random graph
-        graph =  nx.erdos_renyi_graph(self.size, self.edgeProb, self.seed) 
+        self.graph = nx.erdos_renyi_graph(self.size, self.edgeProb, self.seed)
         
         # Get graph type (weighted / unweighted)
         lower = upper = -1
@@ -43,10 +43,9 @@ class Graph:
         upper = int(upper)
 
         # Generate edges weight
-        for u, v in graph.edges():
-            graph[u][v]['weight'] = random.randint(lower, upper)
+        for u, v in self.graph.edges():
+            self.graph[u][v]['weight'] = random.randint(lower, upper)
 
-        self.graph = graph
     
     def generateEmptyGraph(self):
         self.graph = nx.Graph()
@@ -56,6 +55,13 @@ class Graph:
         for x in range (0, self.size):
             self.graph.nodes[x]['vertex'] = Vertex(x)
 
-    def printGraph(self):
-        for u, v in self.graph.edges():
-            print(f"{u} --- {v}")
+    def edges(self):
+        return self.graph.edges()
+    
+    def vertices(self):
+        return [self.graph.nodes[i]['vertex'] for i in self.graph.nodes]
+
+def printGraph(graph):
+    print("Graph edges:")
+    for u, v in graph.edges():
+        print(f"{u} --- {v}")
