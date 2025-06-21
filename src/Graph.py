@@ -31,7 +31,11 @@ class Graph:
     def generateRandomGraph(self):
         # Generate a stochasic random graph
         self.graph = nx.erdos_renyi_graph(self.size, self.edgeProb, self.seed)
-        
+
+        while not nx.is_connected(self.graph):
+            self.seed = random.randint(0, 10**6)
+            self.graph = nx.erdos_renyi_graph(self.size, self.edgeProb, self.seed)
+
         # Get graph type (weighted / unweighted)
         lower = upper = -1
         if (self.graphType["type"] == "weighted"):

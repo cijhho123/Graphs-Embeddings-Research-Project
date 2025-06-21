@@ -1,6 +1,6 @@
 from Graph import Graph, printGraph
 from Edge import Edge
-from Spanner import readEdge, generateRadiusValue
+from Spanner import readEdge, generateRadiusValue, calculateStretchDistribution, processStretchStatistics
 import networkx as nx
 from Label import Label
 
@@ -10,7 +10,13 @@ config = getSettings()
 def main():
     graph = initRandomGraph()
     cover = getSpanner(graph)
-    printGraph(cover)
+    # print("cover:")
+    # printGraph(cover)
+    # print("original:")
+    # printGraph(graph.graph)
+    compression_ratio = len(graph.graph.edges()) / len(cover.edges())
+    stats = calculateStretchDistribution(graph.graph, cover)
+    processStretchStatistics(stats, compression_ratio, graph.seed)
 
 
 def initRandomGraph():
@@ -37,9 +43,9 @@ def getSpanner(graph):
     spanner = nx.Graph()
     for v in graph.vertices():
         for e in v.tree:
-            spanner.add_edge(e.first, e.second)
+            spanner.add_edge(e.first.id, e.second.id)
         for e in v.cross:
-            spanner.add_edge(e.first, e.second)
+            spanner.add_edge(e.first.id, e.second.id)
 
     return spanner
 

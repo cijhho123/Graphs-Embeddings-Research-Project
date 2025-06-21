@@ -5,16 +5,15 @@
 
     "graphSettings": {
         "graphType": {
-            "type": "weighted",
-            "lowerBoundWeight": "1",
-            "upperBoundWeight": "20"
+            "type": "unweighted",
+            "weight": 1
         },
         "vertexCount": 100,
-        "edgeProbability": 0.3,
+        "edgeProbability": 0.5,
         "graphSeed": null
     },
     
     "algorithmSettings": {
-        "alpha": 5
+        "alpha": 1
     }
 }

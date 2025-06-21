@@ -1,6 +1,8 @@
 import json
 import os
 
+CONFIG_PATH = "src/config.json"
+
 weightedGraphType =  {
     "type": "weighted",
     "lowerBoundWeight": 1,
@@ -18,8 +20,11 @@ defaultConfig = {
     },
 
     "graphSettings": {
-        "graphType": weightedGraphType,     # weighted vs unweighted graph
-        "vertexCount": 20,                 # Graph size |V| = vertexCount
+        "graphType": {                      # weighted vs unweighted graph
+            "type": "unweighted",
+            "weight": 1
+        },   
+        "vertexCount": 20,                  # Graph size |V| = vertexCount
         "edgeProbability": 0.3,             # The probability of each edge to exist, each edge is an i.i.d. random varible
         "graphSeed": None                   # Seed to generate the random graph, None for random seed
     },
@@ -35,7 +40,7 @@ defaultConfig = {
 
 def getSettings():
     try:
-        with open("config.json", "r") as f:
+        with open(CONFIG_PATH, "r") as f:
             print("Using existing config file.")
             config = json.load(f)
             return config
