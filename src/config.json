@@ -1,19 +1,17 @@
-{   
+{
     "softwareSettings": {
         "debug": true
     },
-
     "graphSettings": {
         "graphType": {
             "type": "unweighted",
             "weight": 1
         },
-        "vertexCount": 100,
-        "edgeProbability": 0.5,
+        "vertexCount": 200,
+        "edgeProbability": 0.15,
         "graphSeed": null
     },
-    
     "algorithmSettings": {
-        "alpha": 5
+        "alpha": 49
     }
 }

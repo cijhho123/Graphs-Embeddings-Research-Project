@@ -1,2 +1,5 @@
 networkx==3.5
 numpy==2.2.6
+pandas
+matplotlib
+seaborn
