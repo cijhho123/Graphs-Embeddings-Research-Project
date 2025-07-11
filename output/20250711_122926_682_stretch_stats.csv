@@ -1,0 +1,12 @@
+Metric,Value
+compression_ratio,5.937007874015748
+average,1.65837
+median,2.0
+std_dev,0.65669
+mode,1.0
+max,3.0
+alpha,7
+vertex_count,50
+edge_probability,0.6
+graph_type,unweighted
+graph_seed,1248

@@ -10,7 +10,7 @@ MAIN_SCRIPT = "src/Main.py"
 # Parameters to test
 setup_multiplier = 3       # how many experiments do with each setup (specific combination of parameters)
 vertex_counts = [5, 20, 50, 100, 150, 200, 250, 300]   # over 300 it takes too much time per experimet
-edge_probabilities = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4]
+edge_probabilities = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95]
 alphas = [1, 3, 5, 7, 15, 25, 35, 49]  # stretch factor
 
 def run_experiment(n, p, alpha, counter):

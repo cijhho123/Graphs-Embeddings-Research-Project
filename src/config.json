@@ -7,8 +7,8 @@
             "type": "unweighted",
             "weight": 1
         },
-        "vertexCount": 200,
-        "edgeProbability": 0.15,
+        "vertexCount": 300,
+        "edgeProbability": 0.95,
         "graphSeed": null
     },
     "algorithmSettings": {
