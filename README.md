@@ -110,7 +110,7 @@ We examine:
 ### Alpha Experiment
 
 To further analyze α’s role, we ran a focused experiment varying only α while fixing n and p. The results confirmed:
-- Compression improves with α up to a point (~15–25).
+- Compression improves with α up to the point where t >= log (n).
 - Beyond that, further increases in α show diminishing compression benefits.
 
 ---
